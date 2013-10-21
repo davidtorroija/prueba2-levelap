@@ -1,5 +1,5 @@
-var input = 'Mua-Bua-Gua'//'Bua-Bua-Gua-Mua-Gua-Bua'
-, // (Mua-Bua), bua-gua , mua-bua-gua
+var input = 'Bua-Mua-Gua-Bua-Mua-Bua-Bua-Mua-Gua-Bua'
+,
 forjaApp = (function(input,undefined){
 	
 	var	that = {
@@ -80,8 +80,7 @@ forjaApp = (function(input,undefined){
 				while(minutes<120){
 					minutes += 30;
 					lostFollowers +=200;
-				}
-				
+				}				
 			}
 			return lostFollowers;			
 		}
@@ -91,15 +90,13 @@ forjaApp = (function(input,undefined){
 		that.sleepMinutes = 480;
 		var input = window.input.split('-');
 		for (var i = 0; i < input.length; i++) {
-			actions += ' -' + attendBaby(input[i]);
-			//console.log(forjaApp.sleepMinutes);
+			actions += ' -' + attendBaby(input[i]);			
 		};
 		console.log('calculateLostFollowers', that.calculateLostFollowers(), ',sleepMinutes:',that.sleepMinutes, ',getSleepHoursString', that.getSleepHoursString(),',actions:', actions,',that.sleepMinutes/60', that.sleepMinutes/60);
 	}
 
 	parseInput(window.input);
 	
-		
 	return that;
 
 })(input);

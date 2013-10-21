@@ -80,11 +80,6 @@
 		});		
 
 		describe('Followers Part -',function(){
-
-			// it('should start with 0 looseFollowers',function(){
-
-			// });
-			
 			describe('We have 4 or more sleep hours - ',function(){
 				it('should not loose any Followers!',function(){
 					forjaApp.sleepMinutes = 4 * 60;
@@ -112,8 +107,8 @@
 						expect(forjaApp.calculateLostFollowers()).toBe(400);
 					});
 				});
-				describe('Slept 0 to 2 hours - ',function(){
-					it('should loose 200 followers every 30 minutes plus 400 for the 2 hours first two hours',function(){
+				describe('Slept 0 to 2 hours - already lost 400 followers ',function(){
+					it('should loose 200 followers every 30 minutes',function(){
 						forjaApp.sleepMinutes = (2 * 60) - 30;
 						expect(forjaApp.calculateLostFollowers()).toBe(600);
 						forjaApp.sleepMinutes = (2 * 60) - 60;
