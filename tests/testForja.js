@@ -1,32 +1,111 @@
-//hago un mixin es decir injecto las propiedades de mi aplicacion en window para
-//que funcionen los tests sin tener que agregarle el obj.nombreDelaPropiedad
-//es una mala practica pero solo lo hara en los tests, 
-//jasmine inyecta el expect, describe, it, etc en el window no veo porq no puedo hacer esto
-// for (var vars in forjaApp) {
-// 	window[vars] = forjaApp[vars];
-// 	console.log(vars); 
-// };
-//me adelanto y hago el imput propuesto en los tests o hago un input pequenio y 
-//despues lo voy agrandando
 (function (window){
-	describe('Test App',function(){
+	describe('Baby care App',function(){
 		var input;
 		beforeEach(function(){
-			forjaApp.sleepHours = 8;
-			//input = ['Bua'];//['Bua','Bua','Gua','Mua','Gua','Bua'];
+			forjaApp.sleepMinutes = 0;			
 		});		
-		// describe('input === "Bua"',function(){
-		// 	//var input = 'Bua';
-			it('should attendBaby return "feed"',function(){			
-				expect(forjaApp.attendBaby('Bua')).toBe('feed');
-			});
-			it('should attendBaby substract 1 hour of sleep ',function(){			
-				forjaApp.attendBaby('Bua');		
-				console.log(forjaApp.sleepHours);		
-				expect(forjaApp.sleepHours).toBe(7);
+
+		describe('Baby Care Part',function(){
+			describe('input === "Bua"',function(){			
+				it('should attendBaby return "feed"',function(){			
+					expect(forjaApp.attendBaby('Bua')).toBe('feed');
+				});
+				it('should attendBaby substract 60 minutes of sleep ',function(){			
+					forjaApp.attendBaby('Bua');		
+					console.log(forjaApp.sleepMinutes);		
+					expect(forjaApp.sleepMinutes).toBe(-60);
+				});
 			});
 
-		// });	
+			describe('input === "Mua"',function(){			
+				it('should attendBaby return "change"',function(){			
+					expect(forjaApp.attendBaby('Mua')).toBe('change');
+				});
+				it('should attendBaby substract 30 minutes of sleep ',function(){			
+					forjaApp.attendBaby('Mua');		
+					console.log(forjaApp.sleepMinutes);		
+					expect(forjaApp.sleepMinutes).toBe(-30);
+				});			
+			});		
+			
+			describe('input === "Gua"',function(){			
+				it('should attendBaby return "pacifier"',function(){			
+					expect(forjaApp.attendBaby('Gua')).toBe('pacifier');
+				});
+				it('should attendBaby substract 10 minutes of sleep ',function(){			
+					forjaApp.attendBaby('Gua');		
+					console.log(forjaApp.sleepMinutes);		
+					expect(forjaApp.sleepMinutes).toBe(-10);
+				});			
+			});	
+
+			describe('We need a property to store the previous input state',function(){
+				it('should previousInput to be "Mua" when we call attendBaby with "Mua" Input',function(){			
+					expect(forjaApp.attendBaby('Mua')).toBe('change');
+					expect(forjaApp.previousInput).toBe('Mua');				
+				});
+			});
+
+			describe('input === "Mua" and then input === "Bua"',function(){						
+				it('should attendBaby called twice with this two inputs substract 75 minutes of sleep ',function(){			
+					forjaApp.attendBaby('Mua');	
+					forjaApp.attendBaby('Bua');		
+					console.log(forjaApp.sleepMinutes);		
+					expect(forjaApp.sleepMinutes).toBe(-75);
+				});
+				
+			});	
+
+			describe('input === "Bua" and then input === "Gua"',function(){			
+				it('should attendBaby called twice with this two inputs substract 65 minutes of sleep ',function(){			
+					forjaApp.attendBaby('Bua');	
+					forjaApp.attendBaby('Gua');		
+					console.log(forjaApp.sleepMinutes);		
+					expect(forjaApp.sleepMinutes).toBe(-65);
+				});
+			});	
+
+			describe('input === "Bua" and then input === "Gua"',function(){			
+				it('should attendBaby called twice with this two inputs substract 65 minutes of sleep ',function(){			
+					forjaApp.attendBaby('Bua');	
+					forjaApp.attendBaby('Gua');		
+					console.log(forjaApp.sleepMinutes);		
+					expect(forjaApp.sleepMinutes).toBe(-65);
+				});
+			});	
+
+			describe('input === "Bua" and then input === "Gua"',function(){			
+				it('should attendBaby called twice with this two inputs substract 65 minutes of sleep ',function(){			
+					forjaApp.attendBaby('Bua');	
+					forjaApp.attendBaby('Gua');		
+					console.log(forjaApp.sleepMinutes);		
+					expect(forjaApp.sleepMinutes).toBe(-65);
+				});
+			});	
+
+			describe('We need a property to store the previous of the previous input state',function(){
+				it('should previousInput to be "Mua" and the prevPrevInput to be',function(){			
+					forjaApp.attendBaby('Mua');
+					forjaApp.attendBaby('Gua');				
+					expect(forjaApp.prevPrevInput).toBe('Mua');
+									
+				});
+			});
+
+			describe('input === "Mua" and then input === "Bua" and then input === "Gua"',function(){
+				it('should attendBaby called with this three different inputs substract -75 minutes of sleep ',function(){			
+					forjaApp.attendBaby('Mua');	
+					forjaApp.attendBaby('Bua');	
+					forjaApp.attendBaby('Gua');	
+					console.log(forjaApp.sleepMinutes);		
+					expect(forjaApp.sleepMinutes).toBe(-75);
+				});
+			});	
+		});		
+
+		describe('Followers Part',function(){
+			
+		});
 	});
 }
-)(window)
+)(window);
