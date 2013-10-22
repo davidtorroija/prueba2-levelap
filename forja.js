@@ -1,3 +1,5 @@
+/* global console */
+'use strict';
 var input = 'Bua-Mua-Gua-Bua-Mua-Bua-Bua-Mua-Gua-Bua',
 forjaApp = (function(input,undefined){
 	
@@ -7,7 +9,7 @@ forjaApp = (function(input,undefined){
 		sleepMinutes: 480,
 		previousInput: '',
 		prevPrevInput: '',
-		calculateLostFollowers: calculateLostFollowers,		
+		calculateLostFollowers: calculateLostFollowers,
 		parseInput: parseInput
 	},
 	actions ='';

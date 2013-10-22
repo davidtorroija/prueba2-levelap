@@ -1,6 +1,7 @@
+/* global console, forjaApp, describe, beforeEach, it,expect */
+'use strict';
 (function (window){
-	describe('Baby care App - ',function(){
-		var input;
+	describe('Baby care App - ',function(){		
 		beforeEach(function(){
 			forjaApp.sleepMinutes = 0;			
 		});		
